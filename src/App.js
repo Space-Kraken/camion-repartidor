@@ -1,22 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+import { React, useState } from "react";
+import "./App.css";
+import Panel from "./Components/Panel";
+import Table from "./Components/Table";
 
 function App() {
+  const [data, setdata] = useState(false);
+  const [values, setValues] = useState([]);
+  const [desicion, setDesicion] = useState("");
+
+  let noDays = "";
+  let amount = "";
+  let table = [];
+
+  function getDay(value) {
+    noDays = value;
+  }
+
+  function getAmoun(value) {
+    amount = value;
+  }
+
+  function calculate() {
+    let peso = "";
+    let random = "";
+    let factor = 0;
+    for (let days = 0; days < noDays; days++) {
+      let pesoA = 0;
+      let cost = 0;
+      for (let tinas = 0; tinas < amount; tinas++) {
+        random = Math.random().toFixed(5);
+        random < 0.5
+          ? (peso = 190 + Math.sqrt(800 * random))
+          : (peso = 230 + Math.sqrt(800 * (1 - random)));
+        pesoA = pesoA + peso;
+        cost = pesoA >= 1000 ? 200 : "-";
+        if (cost === 200) {
+          factor = factor + 200;
+        }
+        table.push({
+          id: days + 1,
+          tina: tinas + 1,
+          ale: random,
+          pes: peso.toFixed(3),
+          pesoA: pesoA.toFixed(3),
+          cost: cost,
+        });
+      }
+    }
+    factor >= 60000
+      ? setDesicion("Comprar otro camion")
+      : setDesicion("Seguir con el plan actual");
+    console.log(factor);
+    setdata(true);
+    setValues(table);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Panel action={calculate} getDay={getDay} getNumber={getAmoun} />
+        {data ? (
+          <>
+            <Table data={values} />
+            <br></br>
+            <h4 className="text-white">{desicion}</h4>
+          </>
+        ) : null}
       </header>
     </div>
   );
