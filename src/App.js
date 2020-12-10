@@ -33,7 +33,7 @@ function App() {
         random = Math.random().toFixed(5);
         random < 0.5
           ? (peso = 190 + Math.sqrt(800 * random))
-          : (peso = 230 + Math.sqrt(800 * (1 - random)));
+          : (peso = 230 - Math.sqrt(800 * (1 - random)));
         pesoA = pesoA + peso;
         cost = pesoA >= 1000 ? 200 : "-";
         if (cost === 200) {
