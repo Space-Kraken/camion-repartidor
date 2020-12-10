@@ -4,8 +4,8 @@ import "./Tables.scss";
 export default function Tables(props) {
   return (
     <div className="tableComponent">
-      <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <table class="table table-bordered table-striped mb-0 table-dark">
+      <div className="table-wrapper-scroll-y my-custom-scrollbar">
+        <table className="table table-bordered table-striped mb-0 table-dark">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -19,7 +19,7 @@ export default function Tables(props) {
           </thead>
           <tbody>
             {props.data.map((value, key) => (
-              <tr>
+              <tr key={key}>
                 <th scope="row">{key + 1}</th>
                 <td>{value.id}</td>
                 <td>{value.tina}</td>
@@ -29,15 +29,6 @@ export default function Tables(props) {
                 <td>{value.cost}</td>
               </tr>
             ))}
-            {/* <tr>
-              <th scope="row">1</th>
-              <td>1</td>
-              <td>2</td>
-              <td>3</td>
-              <td>4</td>
-              <td>5</td>
-              <td>6</td>
-            </tr> */}
           </tbody>
         </table>
       </div>

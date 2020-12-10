@@ -7,10 +7,12 @@ function App() {
   const [data, setdata] = useState(false);
   const [values, setValues] = useState([]);
   const [desicion, setDesicion] = useState("");
+  const [sumatoria, setSumatoria] = useState("");
 
   let noDays = "";
   let amount = "";
   let table = [];
+  let factor = 0;
 
   function getDay(value) {
     noDays = value;
@@ -23,7 +25,7 @@ function App() {
   function calculate() {
     let peso = "";
     let random = "";
-    let factor = 0;
+    factor = 0;
     for (let days = 0; days < noDays; days++) {
       let pesoA = 0;
       let cost = 0;
@@ -35,7 +37,7 @@ function App() {
         pesoA = pesoA + peso;
         cost = pesoA >= 1000 ? 200 : "-";
         if (cost === 200) {
-          factor = factor + 200;
+          factor += 200;
         }
         table.push({
           id: days + 1,
@@ -51,6 +53,7 @@ function App() {
       ? setDesicion("Comprar otro camion")
       : setDesicion("Seguir con el plan actual");
     console.log(factor);
+    setSumatoria(factor);
     setdata(true);
     setValues(table);
   }
@@ -63,7 +66,10 @@ function App() {
           <>
             <Table data={values} />
             <br></br>
-            <h4 className="text-white">{desicion}</h4>
+            <h4 className="text-white">
+              {"Costo por exceso de peso: " + sumatoria}
+              <br /> {"Resolucion: " + desicion}
+            </h4>
           </>
         ) : null}
       </header>

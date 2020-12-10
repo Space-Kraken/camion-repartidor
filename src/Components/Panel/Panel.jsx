@@ -9,15 +9,15 @@ export default function Panel(props) {
 
   return (
     <div className="panel">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default">
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="inputGroup-sizing-default">
             Dias trabajados
           </span>
         </div>
         <input
           type="number"
-          class="form-control"
+          className="form-control"
           aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default"
           value={values.dias}
@@ -27,15 +27,15 @@ export default function Panel(props) {
           }}
         />
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default">
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span className="input-group-text" id="inputGroup-sizing-default">
             Tinas por dia
           </span>
         </div>
         <input
           type="number"
-          class="form-control"
+          className="form-control"
           aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default"
           value={values.tinas}
@@ -51,7 +51,7 @@ export default function Panel(props) {
           console.log("test");
           props.action();
         }}
-        class="btn btn-primary"
+        className="btn btn-primary"
       >
         Calcular
       </button>
